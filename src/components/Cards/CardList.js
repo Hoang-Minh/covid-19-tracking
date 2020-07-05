@@ -4,7 +4,7 @@ import styles from "./Cards.module.css";
 import CardTemplate from "./CardTemplate";
 
 const CardList = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
-  const dataArray = [
+  const cardsArray = [
     {
       className: "infected",
       title: "Active",
@@ -29,13 +29,13 @@ const CardList = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   ];
 
   const renderContent = () => {
-    return dataArray.map((each) => (
+    return cardsArray.map((card) => (
       <CardTemplate
-        className={each.className}
-        title={each.title}
-        type={each.type}
-        lastUpdate={each.lastUpdate}
-        description={each.description}
+        className={card.className}
+        title={card.title}
+        type={card.type}
+        lastUpdate={card.lastUpdate}
+        description={card.description}
       ></CardTemplate>
     ));
   };
