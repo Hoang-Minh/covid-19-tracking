@@ -1,8 +1,8 @@
 import React from "react";
-import { Cards, Chart, CountryPicker } from "./components";
 import styles from "./App.module.css";
 import { fetchData } from "./api";
 import CardList from "./components/Cards/CardList";
+import Chart from "./components/Chart/Chart";
 
 class App extends React.Component {
   state = {
@@ -30,6 +30,7 @@ class App extends React.Component {
           alt="covid-19 update"
         ></img>
         <CardList data={data}></CardList>
+        <Chart data={data} country={country}></Chart>
       </div>
     );
   }

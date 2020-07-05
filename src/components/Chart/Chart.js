@@ -32,6 +32,10 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
             fill: true,
           },
         ],
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        },
       }}
     ></Line>
   ) : null;

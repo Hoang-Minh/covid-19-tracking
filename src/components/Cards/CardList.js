@@ -6,7 +6,7 @@ import CardTemplate from "./CardTemplate";
 const CardList = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
   return (
     <div className={styles.container}>
-      <Grid container wrap="nowrap" spacing={3} justify="center">
+      <Grid container spacing={3} justify="center">
         <CardTemplate
           className="infected"
           title="Active"
