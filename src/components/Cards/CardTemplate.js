@@ -1,14 +1,22 @@
 import React from "react";
 import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
+import cx from "classnames";
+import styles from "./Cards.module.css";
 
-const CardTemplate = ({ title, type, lastUpdate }) => {
+const CardTemplate = ({ className, title, type, lastUpdate, description }) => {
   if (!type) {
     return null;
   }
 
   return (
-    <Grid item component={Card}>
+    <Grid
+      item
+      component={Card}
+      className={cx(styles.card, styles[className])}
+      xs={12}
+      sm={3}
+    >
       <CardContent>
         <Typography color="textSecondary" gutterBottom>
           {title}
@@ -22,11 +30,9 @@ const CardTemplate = ({ title, type, lastUpdate }) => {
           ></CountUp>
         </Typography>
         <Typography color="textSecondary">
-          {new Date(lastUpdate).toDateString()}
+          {new Date(lastUpdate).toLocaleDateString()}
         </Typography>
-        <Typography variant="body2">
-          Number of active cases of Covid 19
-        </Typography>
+        <Typography variant="body2">{description}</Typography>
       </CardContent>
     </Grid>
   );
