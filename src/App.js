@@ -2,6 +2,7 @@ import React from "react";
 import { Cards, Chart, CountryPicker } from "./components";
 import styles from "./App.module.css";
 import { fetchData } from "./api";
+import CardList from "./components/Cards/CardList";
 
 class App extends React.Component {
   state = {
@@ -28,11 +29,7 @@ class App extends React.Component {
           src="https://directorsblog.nih.gov/wp-content/uploads/2020/03/COVID-19-Card-3.jpg"
           alt="covid-19 update"
         ></img>
-        <Cards data={data}></Cards>
-        <CountryPicker
-          handleCountryChanged={this.handleCountryChanged}
-        ></CountryPicker>
-        <Chart data={data} country={country}></Chart>
+        <CardList data={data}></CardList>
       </div>
     );
   }

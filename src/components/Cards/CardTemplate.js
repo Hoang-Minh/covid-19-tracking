@@ -2,20 +2,22 @@ import React from "react";
 import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
 
-const CardTemplate = ({
-  data: { confirmed, recovered, deaths, lastUpdate },
-}) => {
+const CardTemplate = ({ title, type, lastUpdate }) => {
+  if (!type) {
+    return null;
+  }
+
   return (
     <Grid item component={Card}>
       <CardContent>
         <Typography color="textSecondary" gutterBottom>
-          Infected
+          {title}
         </Typography>
         <Typography variant="h5">
           <CountUp
             start={0}
-            end={confirmed.value}
-            duration={2.5}
+            end={type.value}
+            duration={1}
             separator=","
           ></CountUp>
         </Typography>
