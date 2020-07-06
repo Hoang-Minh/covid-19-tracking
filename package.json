@@ -1,11 +1,12 @@
 {
   "name": "covid19-tracking",
   "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
   "engines": {
     "node": "12.13.0",
     "npm": "6.12.0"
   },
-  "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@testing-library/jest-dom": "^4.2.4",
