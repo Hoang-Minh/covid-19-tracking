@@ -1,24 +1,39 @@
 import StatCard from './StatCard'
 
-const StatCardList = ({ stats }) => {
+const StatCardList = ({ currentData }) => {
+  let thisWeekVal = null
+  let lastWeekVal = null
+  let changeVal = null
+  let changeColor = 'border-gray-400'
+
+  if (currentData) {
+    const thisWeek = Number(currentData[0].percent_test_positivity)
+    const lastWeek = Number(currentData[1].percent_test_positivity)
+    const diff = thisWeek - lastWeek
+    thisWeekVal = `${thisWeek.toFixed(1)}%`
+    lastWeekVal = `${lastWeek.toFixed(1)}%`
+    changeVal = `${diff >= 0 ? '+' : ''}${diff.toFixed(1)}pp`
+    changeColor = diff > 0 ? 'border-red-500' : 'border-green-500'
+  }
+
   const cards = [
     {
-      title: 'ILI Patients',
-      value: stats ? Number(stats.ilitotal) : null,
-      subtitle: 'Patients with influenza-like illness',
+      title: 'This Week',
+      value: thisWeekVal,
+      subtitle: '% of flu tests positive',
       colorClass: 'border-blue-500',
     },
     {
-      title: 'Total Patients',
-      value: stats ? Number(stats.total_patients) : null,
-      subtitle: 'Total patients seen this week',
-      colorClass: 'border-green-500',
+      title: 'Last Week',
+      value: lastWeekVal,
+      subtitle: '% of flu tests positive',
+      colorClass: 'border-gray-400',
     },
     {
-      title: '% ILI',
-      value: stats ? `${Number(stats.weighted_ili).toFixed(2)}%` : null,
-      subtitle: 'Weighted % of visits for ILI',
-      colorClass: 'border-red-500',
+      title: 'Change',
+      value: changeVal,
+      subtitle: 'Week-over-week (pp)',
+      colorClass: changeColor,
     },
   ]
 

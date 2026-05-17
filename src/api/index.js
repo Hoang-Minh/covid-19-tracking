@@ -2,31 +2,16 @@ import axios from 'axios'
 
 const BASE_URL = import.meta.env.VITE_CDC_API_URL
 
-export const REGIONS = [
-  'National',
-  'Region 1',
-  'Region 2',
-  'Region 3',
-  'Region 4',
-  'Region 5',
-  'Region 6',
-  'Region 7',
-  'Region 8',
-  'Region 9',
-  'Region 10',
-]
-
-export const fetchCurrentStats = async (region = 'National') => {
-  const safeRegion = REGIONS.includes(region) ? region : 'National'
+export const fetchCurrentStats = async () => {
   try {
     const { data } = await axios.get(BASE_URL, {
       params: {
-        $where: `region='${safeRegion}'`,
-        $order: 'week_start DESC',
-        $limit: 1,
+        $where: "pathogen='Influenza'",
+        $order: 'week_end DESC',
+        $limit: 2,
       },
     })
-    return data[0] || null
+    return data.length >= 2 ? data : null
   } catch {
     return null
   }
@@ -36,8 +21,8 @@ export const fetchWeeklyTrend = async () => {
   try {
     const { data } = await axios.get(BASE_URL, {
       params: {
-        $where: "region='National'",
-        $order: 'week_start ASC',
+        $where: "pathogen='Influenza'",
+        $order: 'week_end ASC',
         $limit: 52,
       },
     })
@@ -46,5 +31,3 @@ export const fetchWeeklyTrend = async () => {
     return null
   }
 }
-
-export const fetchRegions = () => REGIONS
